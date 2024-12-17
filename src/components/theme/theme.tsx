@@ -1,16 +1,23 @@
+"use client";
+
 import { useContext } from "react";
 import styles from "./theme.module.css";
-import Image from "next/image";
 import { ThemeContext } from "@/context/themeContext";
 
 export default function Theme() {
+  const { toggleTheme, theme } = useContext(ThemeContext);
 
-    const {theme} = useContext(ThemeContext)
-    return (
-        <div className={styles.container}>
-            <Image src="/themeComp/moon.png" alt="Moon" width={14} height={14} />
-            <div className={styles.ball}></div>
-            <Image src="/themeComp/sun.png" alt="Sun" width={14} height={14} />
-        </div>
-    );
+  return (
+    <button
+      className={styles.container}
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+    >
+      {theme === "light" ? (
+        <i className="bx bxs-moon text-2xl text-gray-700 hover:text-gray-900"></i>
+      ) : (
+        <i className="bx bxs-sun text-2xl text-yellow-400 hover:text-yellow-600"></i>
+      )}
+    </button>
+  );
 }

@@ -1,0 +1,73 @@
+/* General Hamburger Menu - hidden by default */
+.hamburger {
+    width: 30px;
+    height: 20px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    gap: 3px;
+  }
+  
+  .line {
+    height: 3px;
+    background-color: var(--textColor, black);
+    width: 100%;
+    border-radius: 2px;
+  }
+  
+  /* General Nav links - visible only on desktop by default */
+  .links {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Responsive Menu logic */
+  .responsiveMenu {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    background-color: var(--bg, white);
+    height: calc(100vh - 100px);
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 24px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Show menu when toggled */
+  .showMenu {
+    display: flex !important; /* Force menu to show when toggled */
+  }
+  
+  /* Responsive breakpoints */
+  @media screen and (max-width: 780px) {
+    .links {
+      display: none; /* Hide regular links on mobile */
+    }
+  
+    .hamburger {
+      display: flex; /* Show hamburger menu */
+    }
+  
+    /* Menu visibility only if `open` is true */
+    .responsiveMenu {
+      display: none;
+    }
+  }
+  
+  @media screen and (min-width: 781px) {
+    .hamburger {
+      display: none;
+    }
+  
+    .links {
+      display: flex;
+    }
+  }
+  

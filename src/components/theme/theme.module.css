@@ -1,13 +1,13 @@
-.container{
-    width: 40px;
-    height: 20px;
-    border-radius: 50%;
+.container {
+    background: none;
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: black;
-}
+    justify-content: center;
+    padding: 4px;
+  }
+  
 
 .ball {
     width: 15px;

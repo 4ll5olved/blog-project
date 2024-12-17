@@ -2,40 +2,48 @@
 
 import { createContext, ReactNode, useEffect, useState } from "react";
 
+// Define the type structure properly
 type ThemeContextType = {
-    theme: string;
-    setTheme: (theme: string) => void
-}
+  theme: string;
+  toggleTheme: () => void; // Correctly declare this function type
+};
 
+// Correctly initialize context with a default value
 export const ThemeContext = createContext<ThemeContextType>({
-    theme: "light",
-    setTheme: () => {}
+  theme: "light",
+  toggleTheme: () => {},
 });
 
-const getFromLocalStorage = ():string => {
-    if(typeof window !== undefined){ 
-    const value = localStorage.getItem('theme')
+// Get theme from LocalStorage safely
+const getFromLocalStorage = (): string => {
+  if (typeof window !== "undefined") {
+    const value = localStorage.getItem("theme");
     return value || "light";
+  }
+  return "light";
+};
+
+interface ThemeContextProviderProps {
+  children: ReactNode;
+}
+
+// Main context provider
+export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ children }) => {
+  const [theme, setTheme] = useState<string>(getFromLocalStorage());
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", theme);
     }
-    return "light";
-}
+  }, [theme]);
 
-interface themeContextProviderProps{
-    children: ReactNode;
-}
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
-export const ThemeContextProvider : React.FC<themeContextProviderProps> = ({children}) => {
-    const [theme, setTheme] = useState<string>(getFromLocalStorage());
-
-    useEffect(() => {
-        if(typeof window !== "undefined"){
-            localStorage.setItem("theme", theme);
-        }
-    }, [theme]);
-    
-    return (
-    <ThemeContext.Provider value ={{theme, setTheme}}>
-        {children}
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
     </ThemeContext.Provider>
-    );
-}
+  );
+};
