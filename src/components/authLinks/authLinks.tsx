@@ -24,7 +24,14 @@ export default function AuthLinks() {
 
   return (
     <>
-      {/* Hamburger Menu */}
+      {status === "unauthenticated" ? (
+        <Link href="/login" className={styles.link}>Login</Link>
+      ) : (
+        <>
+          <Link href="/write" className={styles.link}>Write</Link>
+          <span>Logout</span>
+        </>
+      )}
       <div
         className={styles.hamburger}
         onClick={() => setOpen(!open)}
@@ -36,20 +43,15 @@ export default function AuthLinks() {
 
       {/* Responsive Menu Logic - Menu appears when 'open' is true */}
       {open && (
-        <div className={`${styles.responsiveMenu} ${open ? styles.showMenu : ""}`}>
+        <div className={styles.responsiveMenu}>
           <Link href="/">Homepage</Link>
-          <Link href="/about">About</Link>
-          <Link href="/contact">Contact</Link>
-
+          <Link href="/">About</Link>
+          <Link href="/">Contact</Link>
           {status === "unauthenticated" ? (
-            <Link href="/login" className={styles.link}>
-              Login
-            </Link>
+            <Link href="/" className={styles.link}>Login</Link>
           ) : (
             <>
-              <Link href="/write" className={styles.link}>
-                Write
-              </Link>
+              <Link href="/" >Write</Link>
               <span>Logout</span>
             </>
           )}

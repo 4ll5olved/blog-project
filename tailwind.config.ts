@@ -1,3 +1,4 @@
+import defaultTheme from "tailwindcss/defaultTheme"; // Import defaultTheme
 import type { Config } from "tailwindcss";
 
 export default {
@@ -9,8 +10,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "var(--bg)",        // Match your CSS variable
+        foreground: "var(--textColor)", // Match your CSS variable
+      },
+      fontFamily: {
+        poppins: ['Poppins', ...defaultTheme.fontFamily.sans], // Add Poppins font
       },
     },
   },
