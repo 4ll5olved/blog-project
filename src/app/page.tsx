@@ -1,6 +1,9 @@
+import Categories from "@/components/categories/categories";
 import Hero from "@/components/hero/hero";
 import Head from "next/head";
+import styles from "./homepage.module.css"
 import Image from "next/image";
+import Post from "@/components/posts/post";
 
 export default function Home() {
   return (
@@ -11,8 +14,13 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-      <Hero/>
-      Home
+      <div className={styles.container}>
+        <Hero/>
+        <Categories/>
+        <div className={styles.content}>
+          <Post/>
+        </div>
+      </div>
     </div>
   );
 }
