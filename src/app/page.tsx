@@ -5,6 +5,7 @@ import styles from "./homepage.module.css";
 import Image from "next/image";
 import CardList from "@/components/cardLists/cardList";
 import Menu from "@/components/menu/menu";
+import Pagination from "@/components/pagination/pagination";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           <CardList/>
           <Menu/>
         </div>
+        <Pagination/>
       </div>
     </div>
   );
